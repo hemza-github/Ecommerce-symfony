@@ -48,7 +48,14 @@
             <!-- Title -->
             <h5 class="card-title">
               <strong>
-                <a href="">{{ article.title }}</a>
+                <a href="{{
+                path(
+                  'fiche_produit',
+                  {
+                    id: article.id
+                  }
+                )
+                }}">{{ article.title }}</a>
               </strong>
             </h5>
             <!-- Description -->
