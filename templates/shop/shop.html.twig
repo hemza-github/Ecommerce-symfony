@@ -1,52 +1,109 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ controller_name }}
+  {{ controller_name }}
 {% endblock %}
 
 {% block body %}
+  
+<div class="container mt-5">
 
-	<div class="container-fluid">
-		<div class="container text-center">
-			<div class="jumbotron mt-5">
-				<h1>{{ controller_name }}!</h1>
-			</div>
-			<p class="lead">
-				Voici la liste de tous nos articles
-			</p>
+  <style>
+    .card-body {
+      border-bottom-left-radius: inherit !important;
+      border-bottom-right-radius: inherit !important;
+    }
+  </style>
+<script>$(function () {
+  $('.material-tooltip-main').tooltip({
+    template: '<div class="tooltip md-tooltip"><div class="tooltip-arrow md-arrow"></div><div class="tooltip-inner md-inner"></div></div>'
+  });
+}) </script>
+  <!--Section: Content-->
+  <section class="dark-grey-text text-center">
+    
+    <!-- Section heading -->
+    <h3 class="font-weight-bold mb-4 pb-2">Our bestsellers</h3>
+    <!-- Section description -->
+    <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit fugit, error amet numquam iure provident voluptate esse quasi nostrum quisquam eum porro a pariatur veniam.</p>
 
+  	<!-- Grid row -->
+    <div class="row">
+      {% for article in articles %}
+         <!-- Grid column -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <!-- Card -->
+        <div class="card card-cascade wider card-ecommerce">
+          <!-- Card image -->
+          <div class="view view-cascade overlay">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (56).jpg" class="card-img-top"
+              alt="sample photo">
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <!-- Card image -->
+          <!-- Card content -->
+          <div class="card-body card-body-cascade text-center pb-0">
+            <!-- Title -->
+            <h5 class="card-title">
+              <strong>
+                <a href="">{{ article.title }}</a>
+              </strong>
+            </h5>
+            <!-- Description -->
+            <p class="card-text">{{ article.introduction }}</p>
+            <!-- Card footer -->
 
-        {% for article in articles %}
-              <div class="un-article jumbotron p-0 row">
+            <hr class="my-2"/>
+           
+              <p class="float-left font-weight-bold mb-1 pb-2">{{ article.price }}$</p>
+              <a class="float-right material-tooltip-main" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
+                <i class="fas fa-heart grey-text ml-3"></i>
+              </a>
+              <a class="float-right material-tooltip-main" href="{{
+                path(
+                  'fiche_produit',
+                  {
+                    id: article.id
+                  }
+                )
+                }}" data-toggle="tooltip" data-placement="top" title="Voir plus">
+                <i class="fas fa-eye grey-text ml-3"></i>
+              </a>
+            
+          </div>
 
-                <img src="{{ article.image }}" alt="image article" class="image-preview col-3 p-0" width="285" height="250">
-
-                <div class="text-center p-5 d-flex flex-column col-9 justify-content-between">
-                    <h3 class="mb-3">
-                        {{ article.title }}
-                    </h3>
-
-                    <p class="mb-3"> 
-                        {{ article.introduction }}
-                    </p>
-
-                    <p class="mb-3">
-                        {{ article.price }} € !
-                    </p>
-
-                    <a href="{{ path('fiche_produit', {'id': article.id }) }}" class="btn w-25 mx-auto btn-primary active" role="button">En savoir plus ?</a>
-
-                </div>
-
+              
             </div>
+          </div>
+        
+      {% endfor %}
 
-        {% endfor %}
-          
+          <!-- Card content -->
+        </div>
+        <!-- Card -->
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </section>
+  <!--Section: Content-->
+
+
+</div>
 
 
 
 
-		</div>
-	</div>
 
+
+
+  
+
+
+
+     
 {% endblock %}
